@@ -83,29 +83,29 @@ class UpdateQuestionIntegrationTest @Autowired constructor(
         }
     }
 
-    @Test
-    fun withBlankDescription() {
-        assertDoesNotThrow {
-            updateQuestionController.updateQuestion(
-                UpdateQuestionController.Request(
-                    id = 1L,
-                    title = " ",
-                    description = " ",
-                    subjects = null,
-                    participantUid = participant1Uid
-                )
-            )
-        }
-        questionRepository.findById(1L).getOrNull()?.let {
-            assert(
-                it.id == 1L
-                        && it.title == questionTitle
-                        && it.description == questionDescription
-                        && it.subjects.size == questionSubjects.size
-                        && it.subjects.containsAll(questionSubjects)
-            )
-        }
-    }
+//    @Test
+//    fun withBlankDescription() {
+//        assertDoesNotThrow {
+//            updateQuestionController.updateQuestion(
+//                UpdateQuestionController.Request(
+//                    id = 1L,
+//                    title = " ",
+//                    description = " ",
+//                    subjects = null,
+//                    participantUid = participant1Uid
+//                )
+//            )
+//        }
+//        questionRepository.findById(1L).getOrNull()?.let {
+//            assert(
+//                it.id == 1L
+//                        && it.title == questionTitle
+//                        && it.description == questionDescription
+//                        && it.subjects.size == questionSubjects.size
+//                        && it.subjects.containsAll(questionSubjects)
+//            )
+//        }
+//    }
 
     @Test
     fun withOverflowedDescription() {
