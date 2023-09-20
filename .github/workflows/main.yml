@@ -35,7 +35,20 @@ jobs:
         tags: |
           mateusnosse/cicd:latest
           mateusnosse/cicd:v${{ github.run_number }}
-  CD:
+
+  CD-AZURE
+    needs: [CI]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy no Azure
+        uses: Azure/webapps-deploy@v2.2.11
+        with:
+          app-name: cicd-julio-mateus
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          images: mateusnosse/cicd:v${{ github.run_number }}
+
+  CD-Render:
     needs: [ CI ]
     runs-on: ubuntu-latest
 
