@@ -1,7 +1,7 @@
 FROM gradle:latest as build
 COPY . /app
 WORKDIR /app
-RUN gradle build --skipTests
+RUN gradle build
 
 FROM openjdk:17
 COPY --from=build /app/build/libs/*.jar /app/cicd.jar
