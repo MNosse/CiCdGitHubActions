@@ -35,3 +35,13 @@ jobs:
         tags: |
           mateusnosse/cicd:latest
           mateusnosse/cicd:v${{ github.run_number }}
+  CD:
+    needs: [ CI ]
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Deploy to Render
+        uses: sws2apps/render-deployment@v1.5.0
+        with:
+          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+          apiKey: ${{ secrets.RENDER_API_KEY }}
