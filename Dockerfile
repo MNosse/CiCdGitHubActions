@@ -1,5 +1,10 @@
+FROM gradle:latest as build
+COPY . /app
+WORKDIR /app
+RUN gradle build
+
 FROM openjdk:17
-COPY ./build/libs/*.jar /app/cicd.jar
+COPY --from=build /app/build/libs/*.jar /app/cicd.jar
 WORKDIR /app
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "cicd.jar"]
+CMD ["java", "-jar", "cicd.jar"]
