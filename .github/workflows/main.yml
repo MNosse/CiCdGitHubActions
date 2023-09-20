@@ -41,7 +41,7 @@ jobs:
 
     steps: 
       - name: Deploy to Render
-        uses: sws2apps/render-deployment@v1.5.0
+        uses:  johnbeynon/render-deploy-action@v0.0.8
         with:
-          serviceId: ${{ secrets.RENDER_SERVICE_ID }}
-          apiKey: ${{ secrets.RENDER_API_KEY }}
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
