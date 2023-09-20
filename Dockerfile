@@ -1,4 +1,4 @@
-FROM openjdk:17-jre
+FROM openjdk:17
 VOLUME /tmp
 RUN mkdir /app
 COPY . /app
